@@ -1,6 +1,7 @@
-const express=require('express');
-const controller=require('../controllers/users');
-const router =express.Router();
+const express = require('express');
+const router = express.Router();
+
+const controller = require('../controllers/copies');
 
 router.get('/', controller.list);
 
@@ -14,4 +15,4 @@ router.put('/:id', controller.edit);
 
 router.delete('/:id', controller.destroy);
 
-module.exports= router;
+module.exports = router;
