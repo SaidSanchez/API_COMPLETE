@@ -1,11 +1,12 @@
 const express=require('express');
+const config=require('config');
 const Member=require('../models/member');
 function list(req,res,next) {
   Member.find().then(objs=>res.status(200).json({
-    message:"Lista de members registrados.",
+    message:res.__('oklist.members'),
     obj:objs
   })).catch(ex=>res.status(500).json({
-    message:"No se pudo consultar la lista de members.",
+    message:res.__('badlist.members'),
     obj:ex
   }));
 }
@@ -13,10 +14,10 @@ function list(req,res,next) {
 function index(req,res,next) {
   const id=req.params.id;
   Member.findOne({"_id":id}).then(obj=>res.status(200).json({
-    message:`Member con el id ${id}.`,
+    messageres.__('ok.member'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:`No se pudo recuperar el member con el ${id}.`,
+    message:res.__('bad.member'),
     obj: ex
   }));
 }
@@ -39,11 +40,11 @@ function create(req,res,next) {
   });
 
   member.save().then(obj=>res.status(200).json({
-    message:'Member creado correctamente',
+    message:res.__('cr.member'),
     obj:obj
   }))
     .catch(ex=>res.status(500).json({
-      message:'No se pudo almacenar el member',
+      message:res.__('ncr.member'),
       obj:ex
     }))
 }
@@ -60,10 +61,10 @@ function replace(req,res,next) {
     _phone:phone
   });
   Member.findOneAndUpdate({"_id":id},actor).then(obj=>res.status(200).json({
-    message:"Actor remplazado correctamente.",
+    message:res.__('rp.member'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"No se pudo reemplazar el actor.",
+    message:res.__('nrp.member'),
     obj:ex
   }));
 
@@ -89,10 +90,10 @@ function edit(req,res,next) {
 
 
   Member.findOneAndUpdate({"_id":id},actor).then(obj=>res.status(200).json({
-    message:"Member actualizado correctamente",
+    message:res.__('up.member'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"El member no se pudo actualizar.",
+    message:res.__('nup.member'),
     obj:ex
   }));
 }
@@ -100,10 +101,10 @@ function edit(req,res,next) {
 function destroy(req,res,next) {
   const id=req.params.id;
   Member.remove({"_id":id}).then(obj=>res.status(200).json({
-    message:"Member eliminado correctamente",
+    message:res.__('dl.member'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"El member no se pudo eliminar",
+    message:res.__('ndl.member'),
     obj:ex
   }));
 }

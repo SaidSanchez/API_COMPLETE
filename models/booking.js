@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const mongoosePaginate=require('mongoose-paginate-v2');
 
 const schema = mongoose.Schema({
     _copy:String,
@@ -49,5 +50,5 @@ class Booking {
 }
 
 schema.loadClass(Booking);
-
+schema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Booking', schema);

@@ -1,11 +1,12 @@
 const express=require('express');
+const config=require('config')
 const Actor=require('../models/actor');
 function list(req,res,next) {
   Actor.find().then(objs=>res.status(200).json({
-    message:"Lista de actores registrados.",
+    message:res.__('oklist.actor'),
     obj:objs
   })).catch(ex=>res.status(500).json({
-    message:"No se pudo consultar la lista de actores.",
+    message:res.__('badlist.actor'),
     obj:ex
   }));
 }
@@ -13,10 +14,10 @@ function list(req,res,next) {
 function index(req,res,next) {
   const id=req.params.id;
   Actor.findOne({"_id":id}).then(obj=>res.status(200).json({
-    message:`Actor con el id ${id}.`,
+    message:res.__('ok.actor'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:`No se pudo recuperar el actor con el ${id}.`,
+    message:res.__('bad.actor'),
     obj: ex
   }));
 }
@@ -31,11 +32,11 @@ function create(req,res,next) {
   });
 
   actor.save().then(obj=>res.status(200).json({
-    message:'Actor creado correctamente',
+    message:res.__('cr.actor'),
     obj:obj
   }))
     .catch(ex=>res.status(500).json({
-      message:'No se pudo almacenar el actor',
+      message:res.__('ncr.actor'),
       obj:ex
     }))
 }
@@ -50,10 +51,10 @@ function replace(req,res,next) {
     _lastName:lastName
   });
   Actor.findOneAndUpdate({"_id":id},actor).then(obj=>res.status(200).json({
-    message:"Actor remplazado correctamente.",
+    message:res.__('rp.actor'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"No se pudo reemplazar el actor.",
+    message:res.__('nrp.actor'),
     obj:ex
   }));
 
@@ -74,10 +75,10 @@ function edit(req,res,next) {
   }
 
   Actor.findOneAndUpdate({"_id":id},actor).then(obj=>res.status(200).json({
-    message:"Actor actualizado correctamente",
+    message:res.__('up.actor'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"El actor no se pudo actualizar.",
+    message:res.__('nup.actor'),
     obj:ex
   }));
 }
@@ -85,10 +86,10 @@ function edit(req,res,next) {
 function destroy(req,res,next) {
   const id=req.params.id;
   Actor.remove({"_id":id}).then(obj=>res.status(200).json({
-    message:"Actor eliminado correctamente",
+    message:res.__('dl.actor'),
     obj:obj
   })).catch(ex=>res.status(500).json({
-    message:"El actor no se pudo eliminar",
+    message:res.__('ndl.actor'),
     obj:ex
   }));
 }

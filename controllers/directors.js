@@ -1,13 +1,14 @@
 const express = require('express');
+const config=require('config');
 const Director = require('../models/director');
 
 
 function list(req, res, next) {
     Director.find().then(objs => res.status(200).json({
-        message: 'Lista de actores del sistema ',
+        message:res.__('oklist.director'),
         obj: objs
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo consultar la informacion',
+        message: res.__('oklist.director'),
         obj: ex
     }));
 }
@@ -15,10 +16,10 @@ function list(req, res, next) {
 function index(req, res, next) {
     const id= req.params.id;
     Director.findOne({"_id":id}).then(obj => res.status(200).json({
-        message: 'Actor almacenado con Id ${id]',
+        message:res.__('ok.director'),
         oj: obj
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo consultar la el actor',
+        message:res.__('bad.director'),
         obj: ex
     }));
 }
@@ -33,10 +34,10 @@ function create(req, res, next) {
     });
 
     director.save().then(obj => res.status(200).json({
-        message: 'Usuario creado correctamente ',
+        message:res.__('cr.director'),
         obj: obj
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo almacenar el usuario',
+        message:res.__('ncr.director'),
         obj: ex
     }));
 }
@@ -54,10 +55,10 @@ function replace(req, res, next) {
     });
 
     Director.findOneAndUpdate({"_id":id}, director).then(obj => res.status(200).json({
-        message: 'Actor reemplazado con Id ${id]',
+        message:res.__('rp.director'),
         oj: obj
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo reemplazar al el actor',
+        message: res.__('nrp.director'),
         obj: ex
     }));
 }
@@ -77,10 +78,10 @@ function edit(req, res, next) {
     }
 
     Director.findOneAndUpdate({"_id":id}, director).then(obj => res.status(200).json({
-        message: 'Actor actualizado con Id ${id]',
+        message: res.__('up.director'),
         oj: obj
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo consultar al el actor',
+        message:res.__('nup.directorr'),
         obj: ex
     }));
 }
@@ -88,10 +89,10 @@ function edit(req, res, next) {
 function destroy(req, res, next) {
     const id = req.params.id;
     Director.remove({"_id":id}).then(obj => res.status(200).json({
-        message: 'Actor eliminado',
+        message:res.__('dl.director'),
         oj: obj
     })).catch(ex => res.status(500).json({
-        message: 'No se pudo eliminar al el actor',
+        message: res.__('ndl.director'),
         obj: ex
     }));
 }

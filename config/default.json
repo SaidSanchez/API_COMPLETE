@@ -1,0 +1,6 @@
+{
+  "secret":{
+    "key":"myKey"
+  },
+  "dbChain":"mongodb://localhost:27017/video-club"
+}
