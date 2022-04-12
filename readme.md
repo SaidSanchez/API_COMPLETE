@@ -1,9 +1,19 @@
 # Proyect Video Club
 
-## Tarea | Mi primera API con express + ODM
+## Tarea | Completando mi API
 
 ## Descripción de la tarea:
-Vamos a construir todos los servicios web relacionados con el ejemplo del video club, basado en el esquema cree para cada modelo todo su CRUD. Una vez terminado suba su proyecto a gitlab en una rama diferente a master. Suba la liga del proyecto una vez terminado.
+Con todos los servicios web relacionados con el ejemplo del video club creados en la tarea anterior. Implementemos los nuevos conocimientos adquiridos en clase.
+
+Consideraciones para la tarea:
+
+* Todas las consultas deben estar bien elaboradas.
+* Debe tener un correcto manejo de ambientes en Node.js
+* Todos los mensajes deben estar internacionalizados.
+* Todas las rutas deben responder con el formato estándar (message, obj, error).
+* Todas las rutas deben estar protegidas con JWT (excepto la de login).
+* Cada ruta al responder deberá enviar lo que se realizo al logger.
+* Todas las rutas deben estar probadas con jest y supertest.
 
 ## Author
 
